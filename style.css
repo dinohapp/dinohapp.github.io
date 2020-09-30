@@ -74,12 +74,14 @@ main {
 .projects-showcase {
 	margin: 0 auto;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	max-width: 1000px;
 }
 .projects-showcase img {
-	width: 100%;
-	max-width: 500px;
+	max-width: 400px;
+	/*max-width: 500px;
+	min-width: 300px;*/
 	padding: 10px 0 10px 0;
 }
 
@@ -88,7 +90,6 @@ main {
 }
 
 .project-links {
-	display: inline;
 	height: 100%;
 }
 
