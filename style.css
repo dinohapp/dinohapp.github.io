@@ -19,6 +19,17 @@ header {
 	/*filter: blur(6px) contrast(120%) saturate(120%);*/
 }
 
+hr {
+	opacity: 75%;
+}
+
+.ava img {
+	margin-top: 40px; 
+	width: 175px;
+	height: auto;
+	filter: blur(6px) contrast(120%) saturate(120%);
+}
+
 .bg {
 	position: absolute;
 	top: 0;
@@ -48,7 +59,7 @@ h1 {
 
 h4 {
 	font-size: 22px;
-	margin-top: 95px;
+	margin-top: 55px;
 	font-weight: 100;
 }
 h2 {
