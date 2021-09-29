@@ -15,7 +15,7 @@
 			<h1>Oleksandr Kuratchenko</h1>
 			<hr>
 			<h4> Full-stack WEB developer</h4>
-			<div id="hero" class="ava"><img src="img/portfolio_ava.jpg">
+			<!-- <div id="hero" class="ava"><img src="img/portfolio_ava.jpg"> -->
 			</div>
 		</div>
 	</header>
@@ -75,56 +75,6 @@
 			<a href="https://linkedin.com/in/dinohapp"><img src="img/LI-In-Bug.png"></a>
 			<a href="https://twitter.com/dinohapp"><img src="img/Twitter_Social_Icon_Rounded_Square_White.png"></a>
 		</div>
-<!-- 		<script src="js/pts.min.js"></script><script>
-
-
-// Source code licensed under Apache License 2.0. 
-// Copyright © 2017 William Ngan. (https://github.com/williamngan/pts)
-
-window.demoDescription = "In a field of points that revolves around a center, draw a perpendicular line from each point to a path.";
-
-Pts.quickStart( ".hero", "#123" );
-
-//// Demo code starts (anonymous function wrapper is optional) ---
-
-(function() {
-  
-  var pts = [];
-  let lp = [];
-
-  space.add({ 
-
-    // creatr 200 random points
-    start:( bound ) => {
-      pts = Create.distributeRandom( space.center, 100 );
-    }, 
-
-    animate: (time, ftime) => {
-      // make a line and turn it into an "op" (see the guide on Op for more)
-      //let perpend = new Pt(space.center);
-      pts.rotate2D( 0.0005, space.center );
-
-      pts.forEach( (p, i) => {
-        // for each point, find the perpendicular to the line
-        lp.push(p);
-        var ratio = Math.min( 1, 1 - lp.$subtract(p).magnitude()/(space.size.x/2) );
-        form.stroke(`rgba(255,255,255,${ratio}`, ratio*2).line( [ p, lp ] );
-        form.fillOnly( ["#f03", "#09f", "#0c6"][i%3] ).point( p, 1 );
-      });
-    },
-
-  });
-  
-  //// ----
-  
-
-  space.play();
-
-})();
-
-
-    </script> -->
-
 	</footer>
 </body>
 </html>
