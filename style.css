@@ -27,7 +27,7 @@ hr {
 	margin-top: 40px; 
 	width: 175px;
 	height: auto;
-	filter: blur(6px) contrast(120%) saturate(120%);
+	/*filter: blur(6px) contrast(120%) saturate(120%);*/
 }
 
 .bg {
