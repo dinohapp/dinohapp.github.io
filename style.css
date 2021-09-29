@@ -14,20 +14,13 @@ header {
 	display: flex;
 	height: 100vh;
 	justify-content: center;
-	background: url("img/markus-spiske-qjnAnF0jIGk-unsplash.jpg") no-repeat center;
-	background-size: cover;
+	/*background: url("img/markus-spiske-qjnAnF0jIGk-unsplash.jpg") no-repeat center;
+	background-size: cover;*/
 	/*filter: blur(6px) contrast(120%) saturate(120%);*/
 }
 
 hr {
 	opacity: 75%;
-}
-
-.ava img {
-	margin-top: 40px; 
-	width: 175px;
-	height: auto;
-	/*filter: blur(6px) contrast(120%) saturate(120%);*/
 }
 
 .bg {
@@ -36,12 +29,14 @@ hr {
 	left: 0;
 	width: 100%;
 	height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+	background: black;
 }
 
 .hero {
 	text-align: center;
-	width: 100%;
+	width: 80%;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 h1, h4{
@@ -139,15 +134,29 @@ main {
 footer {
 	justify-content: center;
 	text-align: center;
-}	
+}
+
+.footer-inside {
+	display: flex;
+	flex-wrap: wrap;
+}
 
 .social {
 	box-sizing: border-box;
 	overflow: visible;
 	margin-top: -75px;
 	margin-left: -775px;
+	overflow: visible;
+	background-color: #060616;
+	height: 100px;
 }
-.social img {
+.ava {
+	margin-top: -40px; 
+	width: 	150px;
+	height: auto;
+	overflow: visible;
+}
+.social-img {
 	height: 32px;
 }
 
@@ -171,4 +180,11 @@ footer {
 
 .custom-shape-divider-bottom-1601407411 .shape-fill {
     fill: #060616;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 50%;
+    height: 50%;
+    background: black;
 }
