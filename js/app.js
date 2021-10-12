@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
 	let BreathingHalftone=window.BreathingHalftone;
 	let particlesJS=window.particlesJS;
-	let ava=document.querySelector('.ava');new BreathingHalftone(ava,
+	let ava=document.querySelector('.ava');
+	new BreathingHalftone(ava,
 			{
 			  // ----- dot size ----- //
-			  dotSize: 1/80,
+			  dotSize: 0.01,
 			  // size of dots
 			  // as a fraction of the diagonal of the image
 			  // smaller dots = more dots = poorer performance
 
-			  dotSizeThreshold: 0.01,
+			  dotSizeThreshold: 0.1,
 			  // hides dots that are smaller than a percentage
 
 			  initVelocity: 1,
@@ -27,14 +28,14 @@ document.addEventListener("DOMContentLoaded", function() {
 			  // additive is black with RGB dots,
 			  // subtractive is white with CMK dots
 
-			  isRadial: false,
+			  isRadial: true,
 			  // enables radial grid layout
 
 			  channels: [ 'lum' ],
 			  // layers of dots [ 'red', 'green', 'blue' ]
 			  // 'lum' is another supported channel, for luminosity
 
-			  isChannelLens: true,
+			  isChannelLens: false,
 			  // disables changing size of dots when displaced
 
 			  // ----- behavior ----- //
@@ -60,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			});
 
 	particlesJS.load('particles-js', './js/particlesjs-config.json', function() {
-  	console.log('callback - particles.js config loaded');
 	});
         
 });

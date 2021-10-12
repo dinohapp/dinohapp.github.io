@@ -1,6 +1,7 @@
 paper.install(window);
 window.onload = function() {
-            paper.setup("canvas1");
+            paper.setup("canvas");
+        }
 	       // Code ported to Paper.js from http://the389.com/9/1/
         // with permission.
 
@@ -14,7 +15,6 @@ window.onload = function() {
         values.invMass = 1 / values.mass;
 
         var path, springs;
-        let view = paperScript.getView();
         var size = view.size * [1.2, 1];
 
         var Spring = function(a, b, strength, restLength) {
@@ -110,4 +110,3 @@ window.onload = function() {
                 path.fillColor = path.fullySelected ? null : 'black';
             }
         }
-    };

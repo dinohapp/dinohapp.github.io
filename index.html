@@ -15,6 +15,7 @@
 				<hr>
 				<h4> Full-stack WEB developer</h4>
 			</div>
+            <img class="ava" src="img/portfolio_ava_nobg_bl.jpg">
 		</div>
 	</header>
 	<main>
@@ -61,26 +62,120 @@
 		</div>
 	</main>
 	<footer>
-		<canvas id="canvas1" resize hidpi="off" width="1350px" height="500px"></canvas>
-<!-- 		<div class="custom-shape-divider-bottom-1601407411">
-	    	<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-	        	<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-	        	<path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-	        	<path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
-	    	</svg> -->
-		</div>
-			<div class="social">
+		<div class="social">
 				<a href="https://github.com/dinohapp"><img class="social-img" src="img/GitHub-Mark-Light-32px.png"></a>
 				<a href="https://linkedin.com/in/dinohapp"><img class="social-img" src="img/LI-In-Bug.png"></a>
 				<a href="https://twitter.com/dinohapp"><img class="social-img" src="img/Twitter_Social_Icon_Rounded_Square_White.png"></a>
-				<img class="ava" src="img/portfolio_ava_nobg_bl.jpg">
-			</div>
+		</div>
+		<canvas id="canvas" resize hidpi="off"></canvas>
 	</footer>
 	<script type="text/javascript" src="js/breathing-halftone.pkgd.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/particles.min.js"></script>
 	<script type="text/javascript" src="js/paper-full.js"></script>
-	<script type="text/paperscript" src="js/paper.js" canvas="canvas1"></script>
+	<script type="text/paperscript" canvas="canvas">
+        // Code ported to Paper.js from http://the389.com/9/1/
+        // with permission.
+
+        var values = {
+            friction: 0.8,
+            timeStep: 0.25,
+            amount: 15,
+            mass: 20,
+            count: 0
+        };
+        values.invMass = 1 / values.mass;
+
+        var path, springs;
+        var size = view.size * [1.2, 1];
+
+        var Spring = function(a, b, strength, restLength) {
+            this.a = a;
+            this.b = b;
+            this.restLength = restLength || 80;
+            this.strength = strength ? strength : 0.55;
+            this.mamb = values.invMass * values.invMass;
+        };
+
+        Spring.prototype.update = function() {
+            var delta = this.b - this.a;
+            var dist = delta.length;
+            var normDistStrength = (dist - this.restLength) /
+                    (dist * this.mamb) * this.strength;
+            delta.y *= normDistStrength * values.invMass * 0.2;
+            if (!this.a.fixed)
+                this.a.y += delta.y;
+            if (!this.b.fixed)
+                this.b.y -= delta.y;
+        };
+
+
+        function createPath(strength) {
+            var path = new Path({
+                fillColor: '#060616'
+            });
+            springs = [];
+            for (var i = 0; i <= values.amount; i++) {
+                var segment = path.add(new Point(i / values.amount, 0.5) * size);
+                var point = segment.point;
+                if (i == 0 || i == values.amount)
+                    point.y += size.height;
+                point.px = point.x;
+                point.py = point.y;
+                // The first two and last two points are fixed:
+                point.fixed = i < 2 || i > values.amount - 2;
+                if (i > 0) {
+                    var spring = new Spring(segment.previous.point, point, strength);
+                    springs.push(spring);
+                }
+            }
+            path.position.x -= size.width / 4;
+            return path;
+        }
+
+        function onResize() {
+            if (path)
+                path.remove();
+            size = view.bounds.size * [2, 1];
+            path = createPath(0.1);
+        }
+
+        function onMouseMove(event) {
+            var location = path.getNearestLocation(event.point);
+            var segment = location.segment;
+            var point = segment.point;
+
+            if (!point.fixed && location.distance < size.height / 4) {
+                var y = event.point.y;
+                point.y += (y - point.y) / 6;
+                var previous = segment.previous && segment.previous.point;
+                var next = segment.next && segment.next.point;
+                if (previous && !previous.fixed)
+                    previous.y += (y - previous.y) / 24;
+                if (next && !next.fixed)
+                    next.y += (y - next.y) / 24;
+            }
+        }
+
+        function onFrame(event) {
+            updateWave(path);
+        }
+
+        function updateWave(path) {
+            var force = 1 - values.friction * values.timeStep * values.timeStep;
+            for (var i = 0, l = path.segments.length; i < l; i++) {
+                var point = path.segments[i].point;
+                var dy = (point.y - point.py) * force;
+                point.py = point.y;
+                point.y = Math.max(point.y + dy, 0);
+            }
+
+            for (var j = 0, l = springs.length; j < l; j++) {
+                springs[j].update();
+            }
+            path.smooth({ type: 'continuous' });
+        }
+    </script>
 </body>
 </html>
 
