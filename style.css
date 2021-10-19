@@ -36,8 +36,15 @@ hr {
 
 .hero {
 	text-align: center;
+	align-items: center;
 	display: flex;
 	flex-wrap: wrap;
+}
+.ava {
+	height: 100%;
+	max-width: 100%;
+	width: auto;
+	overflow: hidden;
 }
 
 h1, h4{
@@ -144,12 +151,6 @@ footer {
 	height: 100%;
 	overflow: visible;
 	z-index: 1;
-}
-.ava {
-	width: auto;
-	max-width: 100%;
-	height: 100%;
-	overflow: hidden;
 }
 .social-img {
 	height: 32px;
