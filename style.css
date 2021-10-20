@@ -110,7 +110,7 @@ main {
 }
 
 .project-links {
-	height: 100%;
+	height: auto;
 }
 
 .project {
